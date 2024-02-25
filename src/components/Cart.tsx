@@ -14,9 +14,11 @@ import { Separator } from "./ui/separator";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
+import Image from "next/image";
+import cartpic from "../../public/cart.svg";
 
 const Cart = () => {
-  const itemCount = 1;
+  const itemCount = 0;
 
   const fee = 1;
 
@@ -69,7 +71,29 @@ const Cart = () => {
             </div>
           </>
         ) : (
-          <div></div>
+          <div className="flex h-full flex-col items-center justify-center space-y-1">
+            <div
+              className="relative mb-4 h-60 w-80 text-muted-foreground"
+              aria-hidden="true"
+            >
+              <Image src={cartpic} alt="Картинка с корзиной" fill />
+            </div>
+            <div className="text-xl font-semibold">
+              Ваша корзина пока пуста.
+            </div>
+            <SheetTrigger>
+              <Link
+                href="/products"
+                className={buttonVariants({
+                  variant: "link",
+                  size: "sm",
+                  className: "text-sm text-muted-foreground",
+                })}
+              >
+                Положите товары в свою корзину для оплаты
+              </Link>
+            </SheetTrigger>
+          </div>
         )}
       </SheetContent>
     </Sheet>
@@ -77,5 +101,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-//1:50
